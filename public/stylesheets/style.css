@@ -1,0 +1,55 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+#controllerR,#controllerD{
+    padding: 1em; 
+    width: 28em;
+    float: left;
+}
+#controllerR{
+    margin-left: 6em;
+}
+#valori{
+    width: 28em;
+    height: 21em;
+    margin-left: 6em;
+    float: left;
+}
+#avanti,#indietro,#su,#giu{
+    margin-left: 11em;
+}
+#sx,#ruotaSx,#dx,#ruotaDx{
+    margin-left: 6em;
+}
+#decolla{
+    margin-left: 1em;
+}
+#emergenza{
+    margin-left: 6em;
+}
+canvas{
+    border-radius: 10px 10px 10px 10px ;
+}
+#secondo{
+    clear: left;
+}
+#tasti{
+    float: left;
+}
+#droneStream{
+    float: left;
+    margin-left: 6em;
+}
+#animation,#led{
+    width: 20em;
+}
+label{
+    font-size: 1.5em;
+}
+#vocalB{
+    
+}

@@ -1,0 +1,151 @@
+<html class="card-panel teal lighten-3">
+    <head>
+        <title>Drone</title>
+        <link rel="icon" href="icon.png">
+        <meta charset="utf-8" name="viewport" content="width=device-width"/>
+        <!-- SCRIPT -->
+        <script type="text/javascript" src="javascripts/jquery-2.1.4.min.js"></script>
+        <script type="text/jscript" src="javascripts/materialize.min.js"></script>
+        <script type="text/javascript" src="javascripts/drone.js"></script>
+        <script type="text/javascript" src="javascripts/angular.js"></script>
+        <script type="text/javascript" src="../node_modules/dronestream/dist/nodecopter-client.js"></script>
+        <script type="text/javascript" src="/dronestatus/nodecopter-client.js"></script>
+        <script type="text/javascript" src="javascripts/annyang.min.js"></script>
+        <!-- CSS -->
+        <link rel="stylesheet" href="stylesheets/materialize.min.css">
+        <link rel="stylesheet" href="stylesheets/style.css">
+    </head>
+    <body ng-app>
+        <div id="controllerD" class="card-panel blue lighten-2">
+            <a id="avanti" class="btn-floating btn-large waves-effect waves-light purple accent-2" onmousedown="Esegui('front')" onmouseup="Stop()">
+                <i class="mdi-hardware-keyboard-arrow-up">
+                </i>
+            </a><br><br>
+            <a id="sx" class="btn-floating btn-large waves-effect waves-light red" onmousedown="Esegui('left')" onmouseup="Stop()">
+                <i class="mdi-hardware-keyboard-arrow-left">
+                </i>
+            </a>
+            <a id="dx" class="btn-floating btn-large waves-effect waves-light grey lighten-2" onmousedown="Esegui('right')" onmouseup="Stop()">
+                <i class="mdi-hardware-keyboard-arrow-right">
+                </i>
+            </a><br><br>
+            <a id="indietro" class="btn-floating btn-large waves-effect waves-light brown" onmousedown="Esegui('back')" onmouseup="Stop()">
+                <i class="mdi-hardware-keyboard-arrow-down">
+                </i>
+            </a><br><br>
+            <a id="decolla" class="waves-effect waves-light btn-large orange" onmousedown="Esegui('takeoff')">
+                Decolla<i class="mdi-editor-vertical-align-top right"></i>
+            </a>
+            <a id="atterra" class="waves-effect waves-light btn-large green" onmousedown="Esegui('land')">
+                Atterra<i class="mdi-editor-vertical-align-bottom right"></i>
+            </a>
+        </div>
+        <div id="controllerR" class="card-panel amber">
+            <a id="su" class="btn-floating btn-large waves-effect waves-light red" onmousedown="Esegui('up')" onmouseup="Stop()">
+                <i class="mdi-file-file-upload">
+                </i>
+            </a><br><br>
+            <a id="ruotaSx" class="btn-floating btn-large waves-effect waves-light blue" onmousedown="Esegui('rSx')" onmouseup="Stop()">
+                <i class="mdi-image-rotate-left">
+                </i>
+            </a>
+            <a id="ruotaDx" class="btn-floating btn-large waves-effect waves-light black" onmousedown="Esegui('rDx')" onmouseup="Stop()">
+                <i class="mdi-image-rotate-right">
+                </i>
+            </a><br><br>
+            <a id="giu" class="btn-floating btn-large waves-effect waves-light pink" onmousedown="Esegui('down')" onmouseup="Stop()">
+                <i class="mdi-file-file-download">
+                </i>
+            </a><br><br>
+            <a id="emergenza" class="waves-effect waves-light btn-large red" onmousedown="Esegui('emerg')" >
+                Emergenza<i class="mdi-alert-warning right"></i>
+            </a>
+        </div>
+        <div id="valori" class="card-panel yellow">
+            <form action="#">
+                <p class="range-field">
+                    Velocità verticale  {{vv}}
+                    <input type="range" id="velocitaV" min="0" max="100" ng-model="vv" ng-init="vv=50"/>
+                </p>
+                <p class="range-field">
+                    Velocità rotazione  {{vr}}
+                    <input type="range" id="velocitaR" min="0" max="100" ng-model="vr" ng-init="vr=50"/>
+                </p>
+                <p class="range-field">
+                    Altezza massima  {{a}} m
+                    <input type="range" id="altezza" min="0" max="10" step="0.5" ng-model="a" ng-init="a=3" onchange="inviaA()" />
+                </p>
+                <p id="battery"></p>
+            </form>
+        </div>
+        <div id="secondo">
+            <div id="tasti" class="card-panel red darken-1">
+                <label>Animazioni</label>
+                <select id="animation" class="browser-default">
+                    <option value="phiM30Deg">phiM30Deg</option>
+                    <option value="phi30Deg">phi30Deg</option>
+                    <option value="thetaM30Deg">thetaM30Deg</option>
+                    <option value="theta30Deg">theta30Deg</option>
+                    <option value="theta20degYaw200deg">theta20degYaw200deg</option>
+                    <option value="theta20degYawM200deg">theta20degYawM200deg</option>
+                    <option value="turnaround">turnaround</option>
+                    <option value="turnaroundGodown">turnaroundGodown</option>
+                    <option value="yawShake">yawShake</option>
+                    <option value="yawDance">yawDance</option>
+                    <option value="phiDance">phiDance</option>
+                    <option value="thetaDance">thetaDance</option>
+                    <option value="vzDance">vzDance</option>
+                    <option value="wave">wave</option>
+                    <option value="phiThetaMixed">phiThetaMixed</option>
+                    <option value="doublePhiThetaMixed">doublePhiThetaMixed</option>
+                    <option value="flipAhead">flipAhead</option>
+                    <option value="flipBehind">flipBehind</option>
+                    <option value="flipLeft">flipLeft</option>
+                    <option value="flipRight">flipRight</option>            
+                </select>
+                <a id="animB" class="waves-effect waves-light btn-large blue lighten-2" onclick="animazione()">
+                    <i class="mdi-content-send">
+                    </i>
+                </a>
+                <br><br><br>
+                <label>LED</label>
+                <select id="led" class="browser-default">
+                    <option value="blinkGreenRed">blinkGreenRed</option>
+                    <option value="blinkGreen">blinkGreen</option>
+                    <option value="blinkRed">blinkRed</option>
+                    <option value="blinkOrange">blinkOrange</option>
+                    <option value="snakeGreenRed">snakeGreenRed</option>
+                    <option value="fire">fire</option>
+                    <option value="standard">standard</option>
+                    <option value="red">red</option>
+                    <option value="green">green</option>
+                    <option value="redSnake">redSnake</option>
+                    <option value="blank">blank</option>
+                    <option value="rightMissile">rightMissile</option>
+                    <option value="leftMissile">leftMissile</option>
+                    <option value="doubleMissile">doubleMissile</option>
+                    <option value="frontLeftGreenOthersRed">frontLeftGreenOthersRed</option>
+                    <option value="frontRightGreenOthersRed">frontRightGreenOthersRed</option>
+                    <option value="rearRightGreenOthersRed">rearRightGreenOthersRed</option>
+                    <option value="rearLeftGreenOthersRed">rearLeftGreenOthersRed</option>
+                    <option value="leftGreenRightRed">leftGreenRightRed</option>
+                    <option value="leftRedRightGreen">leftRedRightGreen</option>
+                    <option value="blinkStandard">blinkStandard</option>
+                </select>
+                <a id="ledB" class="waves-effect waves-light btn-large yellow" onclick="ledA()">
+                    <i class="mdi-image-wb-incandescent">
+                    </i>
+                </a>
+            </a>
+            </div>
+            <div id="droneStream"></div>
+        </div>
+        <script>
+            // video canvas will auto-size to the DOM-node, or default to 640*360 if no size is set.
+            new NodecopterStream(document.getElementById("droneStream"));
+            new NodecopterStatus().on('change', function (message) {
+                document.getElementById("battery").innerHTML ="Batteria "+JSON.parse(message.data)["demo"]["batteryPercentage"]+"%";
+            });
+        </script>
+    </body>
+</html>

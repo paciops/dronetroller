@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Comandi Vocali</title>
+        <link rel="icon" href="http://www.iconarchive.com/download/i95308/dtafalonso/android-l/Voice-Recoder.ico">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/1.6.0/annyang.min.js"></script>
+        <style>
+            body{
+                background-color: #26a69a;
+            }
+            #rec,#txt{
+                max-width: 50%;
+                height: 33%;
+                font-family: arial;
+                font-size: 5em;
+            }
+            #rec{
+                background-color: #f57c00;
+            }
+            #txt{
+                background-color: #4fc3f7;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="rec" onclick="Rec()">
+            Registra
+        </div>
+        <div id="txt">
+            
+        </div>
+        <script>
+            function Rec() {
+                if(annyang) {
+                    var comando = {
+                        'drone *com': function(com){
+                            document.getElementById('txt').innerHTML = com;
+                        }
+                    }
+                    annyang.setLanguage('it-IT');
+                    annyang.addCommands(comando);
+                    annyang.start();
+                }
+            }
+            Rec();
+        </script>
+    </body>
+</html>
