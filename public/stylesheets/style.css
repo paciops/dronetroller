@@ -1,9 +1,13 @@
-body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body{
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+a{
+    color: #00B7FF;
+}
+button{
+    height: 3em;
+    width: 13em;
 }
 #controllerR,#controllerD{
     padding: 1em; 
@@ -44,12 +48,15 @@ canvas{
     float: left;
     margin-left: 6em;
 }
-#animation,#led{
-    width: 20em;
+#ANIM,#LED{
+    display: none;
+    position: absolute;
+    margin-left: 14em;
+    float: left;
 }
-label{
-    font-size: 1.5em;
+#ANIM{
+    background-color: dodgerblue;
 }
-#vocalB{
-    
+#LED{
+    background-color: darkgrey;
 }
