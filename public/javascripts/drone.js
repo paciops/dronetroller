@@ -6,16 +6,16 @@ function Esegui(com) {
         data:   {vv:    (jQuery("#velocitaV").val()/100),vr:   (jQuery("#velocitaR").val()/100)}
     })
 }
-function ledA(){
+function led(val){
     jQuery.ajax({
         url:    "/controll/led",
-        data:   {led: jQuery("#led option:selected").text()}
+        data:   {led: val}
     });
 }
-function animazione(){
+function animazione(val){
     jQuery.ajax({
         url:    "/controll/anim",
-        data:   {animation: jQuery("#animation option:selected").text()}
+        data:   {animation: val}
     });
 }
 function Stop() {

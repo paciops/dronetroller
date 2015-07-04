@@ -65,12 +65,14 @@ router.get('/stop', function(request,response,next){
 });
 router.get('/Led', function(request,response,next){
     client.animateLeds(request.query.led,100,3);
+    response.send('LED = '+request.query.led);
 });
 router.get('/Anim', function(request,response,next){
     client.animate(request.query.animation,1000);
-    
+    response.send('Animation = '+request.query.animation);
 });
 router.get('/alt', function(request,response,next){
     client.config('control:altitude_max',request.query.altezza*1000);
+    response.send('Altitude max = '+request.query.altezza+'m');
 });
 module.exports = router;
