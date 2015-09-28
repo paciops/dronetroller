@@ -1,0 +1,29 @@
+{
+  "name": "dronetroller",
+  "version": "0.0.1",
+  "homepage": "https://github.com/paciops/dronetroller",
+  "authors": [
+    "Riccardo Pacioni <riccardo960@gmail.com>"
+  ],
+  "description": "a controller browser based",
+  "main": "app.js",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "ar.drone"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#~1.4.6",
+    "jquery": "~2.1.4",
+    "Materialize": "materialize#~0.97.1"
+  }
+}
