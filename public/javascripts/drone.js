@@ -27,3 +27,5 @@ function inviaA() {
         data:   {altezza:   jQuery("altezza").val()}
     });
 }
+
+$('.controlD').mousedown

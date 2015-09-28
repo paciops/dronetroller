@@ -22,8 +22,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "angularjs#~1.4.6",
-    "jquery": "~2.1.4",
-    "Materialize": "materialize#~0.97.1"
+    "angular": "latest",
+    "jquery": "latest",
+    "Materialize": "latest"
   }
 }
