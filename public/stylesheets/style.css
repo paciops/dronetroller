@@ -23,16 +23,16 @@ button{
     margin-left: 6em;
     float: left;
 }
-#avanti,#indietro,#su,#giu{
+#front,#back,#up,#down{
     margin-left: 11em;
 }
-#sx,#ruotaSx,#dx,#ruotaDx{
+#left,#rSx,#right,#rDx{
     margin-left: 6em;
 }
 #decolla{
     margin-left: 1em;
 }
-#emergenza{
+#emerg{
     margin-left: 6em;
 }
 canvas{

@@ -1,6 +1,5 @@
 function Esegui(com) {
-    console.log(com);
-    console.log();
+    console.info(com);
     jQuery.ajax({
         url:    "/controll/"+com,
         data:   {vv:    (jQuery("#velocitaV").val()/100),vr:   (jQuery("#velocitaR").val()/100)}
@@ -19,6 +18,7 @@ function animazione(val){
     });
 }
 function Stop() {
+    console.error('Stop');
     jQuery.ajax("/controll/stop");
 }
 function inviaA() {
@@ -28,4 +28,9 @@ function inviaA() {
     });
 }
 
-$('.controlD').mousedown
+$(document).on('mousedown',".control",function() {
+    Esegui(this.id);
+});
+$(document).on('mouseup',".control", function() {
+    Stop();
+})

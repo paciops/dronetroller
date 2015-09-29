@@ -24,6 +24,6 @@
   "dependencies": {
     "angular": "latest",
     "jquery": "latest",
-    "Materialize": "latest"
+    "materialize": "latest"
   }
 }
